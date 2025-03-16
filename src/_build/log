@@ -1,0 +1,6 @@
+# dune init proj src
+# OCAMLPARAM: unset
+# Shared cache: enabled-except-user-rules
+# Shared cache location: /Users/yannick/.cache/dune/db
+# Workspace root: /Users/yannick/Documents/OCaml/C4ml/src
+# Auto-detected concurrency: 12
