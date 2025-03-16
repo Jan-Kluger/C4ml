@@ -1,2 +1,2 @@
 # C4ml
-Connect 4 game in OaCaml
+Connect 4 game in OCaml
