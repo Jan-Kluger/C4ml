@@ -1,0 +1,5 @@
+(library
+ (name test_players)
+ (libraries c4_lib)
+ (modules ex_player0 ex_player1)
+)
