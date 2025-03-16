@@ -1,4 +1,4 @@
 (executable
  (public_name src)
  (name main)
- (libraries c4_lib))
+ (libraries c4_lib test_players))

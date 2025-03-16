@@ -1,3 +1,4 @@
 (library
  (name c4_lib)
+ (modules c4_types)
 )
