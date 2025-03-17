@@ -122,7 +122,7 @@ end = struct
   let Collumn(fill, current_col) = col_d in
 
   (* If player tries to cheat and rop on already full collumn, opponent wins *)
-  if fill >= 6 then B else begin
+  if fill >= 7 then B else begin
     (* Otherwise we drop chip into collumn *)
     current_col.(fill) <- turn;
     let new_collumn = Collumn(fill + 1, current_col) in
@@ -152,7 +152,7 @@ end
 module Test_game = GAME (Ex_player0)(Ex_player1)
 
 (* Initialize with an empty playing field *)
-let (state : board) = Array.init 7 (fun _ -> Collumn (0, Array.make 6 Free))
+let (state : board) = Array.init 7 (fun _ -> Collumn (0, Array.make 7 Free))
 
 let () =
   let winner = Test_game.run_game state in
