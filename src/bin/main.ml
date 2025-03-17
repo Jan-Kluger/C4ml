@@ -109,12 +109,19 @@ end = struct
   let total_chips = Array.fold_left (fun acc (Collumn(chip_count, _)) -> acc + chip_count) 0 state in
   if total_chips >= 49 then Free else 
 
+  (* Make copy of board so player cannot drop multiple chips *)
+  let copy_board (state : board) : board =
+    Array.map (fun (Collumn (fill, col)) ->
+      Collumn (fill, Array.copy col)
+    ) state
+    in
+
   (* Get next player to make a move and*)
   (* Get the collumn that the player will drop a chip at *)
   let to_drop, next_player = 
     match turn with
-    | A -> A.make_move state, B
-    | B -> B.make_move state, A
+    | A -> A.make_move (copy_board state), B
+    | B -> B.make_move (copy_board state), A
     | _ -> failwith "tun can only be either a or b"
   in
 
