@@ -6,7 +6,8 @@ open Test_players.Ex_player1
 module GAME (A : PLAYER_SIG) (B : PLAYER_SIG) : sig
   
   (* Main engine of the game. returns the chip of the winning player *)
-  val run_game : board -> chip
+  val run_game : ?turn:chip -> board -> chip
+
 
 end = struct
   (* method to print board for immersion *)
@@ -35,11 +36,24 @@ end = struct
       print_endline line
     done
   
-  
-  let run_game (state : board) : chip =
-    print_board state;
+    let rec game_helper (turn : chip) (state : board) : chip =
+    (* Get the collumn that the player will drop a chip at *)
+    let to_drop = 
+      match turn with
+      | A -> A.make_move state
+      | B -> B.make_move state
+      | _ -> failwith "tun can only be either a or b"
+    in
+    
     (* Temporarily return -1 *)
     A
+
+  let run_game ?(turn : chip = A) (state : board) : chip =
+    (* Print inital game state *)
+    print_board state;
+    (* Run game *)
+    game_helper turn state
+    
 end
 
 module Test_game = GAME (Ex_player0)(Ex_player1)
